@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>D Luna Soft — apps sencillas, bien hechas</title>
+  <meta name="description" content="D Luna Soft: estudio independiente de aplicaciones móviles hechas en Colombia.">
+  <style>
+    :root {
+      --bg: #0f1214; --surface: #1a1f23; --text: #e8eaec; --muted: #9aa4ab;
+      --accent: #f5bd48; --accent-2: #4cdadf;
+    }
+    @media (prefers-color-scheme: light) {
+      :root { --bg: #f7f5f0; --surface: #ffffff; --text: #1d2124; --muted: #5c666d;
+              --accent: #7a5900; --accent-2: #00696e; }
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column;
+    }
+    main { flex: 1; width: min(680px, 92vw); margin: 0 auto; padding: 4rem 0 3rem; }
+    h1 { font-size: 2.2rem; letter-spacing: -0.02em; }
+    h1 .d { color: var(--accent); }
+    .tagline { color: var(--muted); margin: 0.75rem 0 3rem; font-size: 1.05rem; }
+    h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em;
+         color: var(--muted); margin-bottom: 1rem; }
+    .app-card {
+      display: block; background: var(--surface); border-radius: 16px;
+      padding: 1.4rem 1.6rem; text-decoration: none; color: inherit;
+      border: 1px solid transparent; transition: border-color 0.2s;
+    }
+    .app-card:hover { border-color: var(--accent); }
+    .app-card .name { font-weight: 700; font-size: 1.15rem; }
+    .app-card .name .fish { margin-right: 0.4rem; }
+    .app-card p { color: var(--muted); font-size: 0.95rem; margin-top: 0.3rem; }
+    .badge { display: inline-block; margin-top: 0.7rem; font-size: 0.78rem;
+             color: var(--accent-2); }
+    footer { text-align: center; padding: 2rem 1rem; color: var(--muted);
+             font-size: 0.85rem; }
+    footer a { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1><span class="d">D</span> Luna Soft</h1>
+    <p class="tagline">Estudio independiente. Apps sencillas y bien hechas, pensadas desde Colombia.</p>
+
+    <h2>Nuestras apps</h2>
+    <a class="app-card" href="https://memotask.dlunasoft.com">
+      <span class="name"><span class="fish">🐟</span>MemoTask</span>
+      <p>Recordatorios listos en 30 segundos, para los que tenemos memoria de pez.
+         Funciona sin internet y sin cuentas.</p>
+      <span class="badge">Próximamente en Google Play</span>
+    </a>
+  </main>
+  <footer>
+    <p>© 2026 D Luna Soft · <a href="mailto:soporte@dlunasoft.com">soporte@dlunasoft.com</a></p>
+  </footer>
+</body>
+</html>
