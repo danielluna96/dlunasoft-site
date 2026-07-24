@@ -3,60 +3,281 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>D Luna Soft — apps sencillas, bien hechas</title>
-  <meta name="description" content="D Luna Soft: estudio independiente de aplicaciones móviles hechas en Colombia.">
+  <title>D Luna Soft — Estudio de software en Cali, Colombia</title>
+  <meta name="description" content="Apps propias como MemoTask y desarrollo a la medida: Android nativo, web con Django y React, integraciones API, consultoría y soporte. Tu socio en desarrollo de software.">
+  <meta property="og:title" content="D Luna Soft — Estudio de software">
+  <meta property="og:description" content="Apps propias y desarrollo a la medida desde Cali, Colombia: Android nativo, Django, React, APIs.">
+  <meta property="og:url" content="https://dlunasoft.com">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_CO">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1026'/%3E%3Cpath d='M42 12a22 22 0 1 0 10 40 26 26 0 1 1-10-40z' fill='%23F5BD48'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "D Luna Soft",
+    "url": "https://dlunasoft.com",
+    "email": "support@dlunasoft.com",
+    "description": "Estudio independiente de software: apps móviles propias y desarrollo a la medida (Android nativo, Django, React, integraciones API).",
+    "founder": { "@type": "Person", "name": "Daniel Luna" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Cali", "addressCountry": "CO" }
+  }
+  </script>
   <style>
     :root {
-      --bg: #0f1214; --surface: #1a1f23; --text: #e8eaec; --muted: #9aa4ab;
-      --accent: #f5bd48; --accent-2: #4cdadf;
-    }
-    @media (prefers-color-scheme: light) {
-      :root { --bg: #f7f5f0; --surface: #ffffff; --text: #1d2124; --muted: #5c666d;
-              --accent: #7a5900; --accent-2: #00696e; }
+      --bg: #0B1026; --bg-2: #0E1430; --surface: #141A3D; --line: #232B58;
+      --text: #EAECF5; --muted: #98A0BF;
+      --gold: #F5BD48; --gold-deep: #D99F1F; --cyan: #7DD3E0;
+      --radius: 18px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       background: var(--bg); color: var(--text);
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column;
+      font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.65; -webkit-font-smoothing: antialiased;
     }
-    main { flex: 1; width: min(680px, 92vw); margin: 0 auto; padding: 4rem 0 3rem; }
-    h1 { font-size: 2.2rem; letter-spacing: -0.02em; }
-    h1 .d { color: var(--accent); }
-    .tagline { color: var(--muted); margin: 0.75rem 0 3rem; font-size: 1.05rem; }
-    h2 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.12em;
-         color: var(--muted); margin-bottom: 1rem; }
-    .app-card {
-      display: block; background: var(--surface); border-radius: 16px;
-      padding: 1.4rem 1.6rem; text-decoration: none; color: inherit;
-      border: 1px solid transparent; transition: border-color 0.2s;
+    h1, h2, h3, .wordmark { font-family: "Fraunces", Georgia, serif; font-weight: 600; letter-spacing: -0.01em; }
+    a { color: var(--cyan); }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+    .wrap { width: min(1000px, 92vw); margin: 0 auto; }
+
+    /* ---------- Nav ---------- */
+    nav { position: relative; z-index: 2; display: flex; align-items: center; gap: 1.5rem;
+          flex-wrap: wrap; padding: 1.4rem 0; }
+    nav .wordmark { font-size: 1.15rem; color: var(--text); text-decoration: none; }
+    nav .wordmark .d { color: var(--gold); }
+    nav .links { margin-left: auto; display: flex; gap: 1.4rem; flex-wrap: wrap; }
+    nav .links a { color: var(--muted); text-decoration: none; font-size: 0.92rem; font-weight: 600; }
+    nav .links a:hover { color: var(--text); }
+
+    /* ---------- Hero / cielo nocturno ---------- */
+    header {
+      position: relative; overflow: hidden;
+      background: radial-gradient(120% 90% at 70% -10%, #1A2254 0%, var(--bg) 60%);
+      border-bottom: 1px solid var(--line);
     }
-    .app-card:hover { border-color: var(--accent); }
-    .app-card .name { font-weight: 700; font-size: 1.15rem; }
-    .app-card .name .fish { margin-right: 0.4rem; }
-    .app-card p { color: var(--muted); font-size: 0.95rem; margin-top: 0.3rem; }
-    .badge { display: inline-block; margin-top: 0.7rem; font-size: 0.78rem;
-             color: var(--accent-2); }
-    footer { text-align: center; padding: 2rem 1rem; color: var(--muted);
-             font-size: 0.85rem; }
+    .sky { position: absolute; inset: 0; pointer-events: none; }
+    .hero { position: relative; z-index: 1; padding: 4.5rem 0 5.5rem; }
+    .eyebrow { color: var(--cyan); font-size: 0.82rem; font-weight: 800;
+               text-transform: uppercase; letter-spacing: 0.18em; }
+    .hero h1 { font-size: clamp(2.6rem, 7vw, 4.2rem); line-height: 1.08; margin: 0.7rem 0 0; }
+    .hero h1 .d { color: var(--gold); }
+    .hero .lede { font-size: clamp(1.15rem, 2.6vw, 1.45rem); color: var(--text); margin-top: 1rem;
+                  font-family: "Fraunces", Georgia, serif; font-weight: 500; font-style: italic; }
+    .hero p.sub { color: var(--muted); max-width: 34rem; margin-top: 1rem; }
+    .cta-row { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 2.2rem; }
+    .btn { display: inline-flex; align-items: center; gap: 0.55rem; text-decoration: none;
+           font-weight: 800; font-size: 0.98rem; padding: 0.85rem 1.5rem; border-radius: 999px;
+           transition: transform 0.15s, background 0.2s; }
+    .btn:active { transform: scale(0.97); }
+    .btn-gold { background: var(--gold); color: #241A02; }
+    .btn-gold:hover { background: var(--gold-deep); }
+    .btn-ghost { border: 1px solid var(--line); color: var(--text); }
+    .btn-ghost:hover { border-color: var(--gold); }
+    .btn svg { flex: none; }
+
+    /* ---------- Secciones ---------- */
+    section { padding: 4rem 0 0; }
+    section:last-of-type { padding-bottom: 4.5rem; }
+    .kicker { color: var(--gold); font-size: 0.8rem; font-weight: 800;
+              text-transform: uppercase; letter-spacing: 0.18em; }
+    section h2 { font-size: clamp(1.7rem, 4vw, 2.3rem); margin: 0.4rem 0 1.6rem; }
+
+    .app-card { display: block; background: linear-gradient(135deg, #17204B 0%, var(--surface) 70%);
+                border: 1px solid var(--line); border-radius: var(--radius);
+                padding: 1.8rem 2rem; text-decoration: none; color: inherit;
+                transition: border-color 0.2s; }
+    .app-card:hover { border-color: var(--gold); }
+    .app-card .name { font-family: "Fraunces", Georgia, serif; font-size: 1.5rem; font-weight: 600; }
+    .app-card .fish { margin-right: 0.5rem; }
+    .app-card p { color: var(--muted); margin-top: 0.5rem; max-width: 38rem; }
+    .badge { display: inline-block; margin-top: 1rem; font-size: 0.8rem; font-weight: 800;
+             color: var(--cyan); border: 1px solid var(--line); border-radius: 999px;
+             padding: 0.25rem 0.8rem; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+            padding: 1.5rem 1.6rem; }
+    .card h3 { font-size: 1.12rem; margin-bottom: 0.4rem; }
+    .card p { color: var(--muted); font-size: 0.95rem; }
+    .card .tech { display: block; margin-top: 0.8rem; color: var(--cyan);
+                  font-size: 0.8rem; font-weight: 800; letter-spacing: 0.06em; }
+
+    .about { display: grid; grid-template-columns: auto 1fr; gap: 1.6rem; align-items: start;
+             background: var(--surface); border: 1px solid var(--line);
+             border-radius: var(--radius); padding: 2rem; }
+    .about .moon-mini { flex: none; }
+    .about p { color: var(--muted); max-width: 46rem; }
+    .about p strong { color: var(--text); }
+    .about .quote { margin-top: 1rem; font-family: "Fraunces", Georgia, serif; font-style: italic;
+                    color: var(--text); }
+    @media (max-width: 560px) { .about { grid-template-columns: 1fr; } }
+
+    .contact-box { text-align: center; background: radial-gradient(90% 130% at 50% 120%, #1A2254 0%, var(--surface) 65%);
+                   border: 1px solid var(--line); border-radius: var(--radius); padding: 3rem 1.5rem; }
+    .contact-box p { color: var(--muted); max-width: 30rem; margin: 0.4rem auto 1.8rem; }
+    .contact-note { font-size: 0.85rem; color: var(--muted); margin-top: 1.4rem; }
+
+    footer { border-top: 1px solid var(--line); margin-top: 4.5rem; padding: 2rem 0;
+             color: var(--muted); font-size: 0.88rem; }
+    footer .wrap { display: flex; gap: 0.6rem 1.6rem; flex-wrap: wrap; justify-content: center; }
     footer a { color: var(--muted); }
+
+    @keyframes twinkle { 0%, 100% { opacity: 0.9; } 50% { opacity: 0.25; } }
+    .sky circle.tw { animation: twinkle 3.5s ease-in-out infinite; }
+    .sky circle.tw2 { animation: twinkle 5s ease-in-out 1.2s infinite; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .sky circle.tw, .sky circle.tw2 { animation: none; }
+    }
   </style>
 </head>
 <body>
-  <main>
-    <h1><span class="d">D</span> Luna Soft</h1>
-    <p class="tagline">Estudio independiente. Apps sencillas y bien hechas, pensadas desde Colombia.</p>
 
-    <h2>Nuestras apps</h2>
-    <a class="app-card" href="https://memotask.dlunasoft.com">
-      <span class="name"><span class="fish">🐟</span>MemoTask</span>
-      <p>Recordatorios listos en 30 segundos, para los que tenemos memoria de pez.
-         Funciona sin internet y sin cuentas.</p>
-      <span class="badge">Próximamente en Google Play</span>
-    </a>
+  <header>
+    <svg class="sky" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <!-- Luna creciente -->
+      <g transform="translate(1000, 120)">
+        <circle r="58" fill="#F5BD48" opacity="0.95"/>
+        <circle cx="-24" cy="-12" r="52" fill="#111737"/>
+      </g>
+      <!-- Estrellas -->
+      <circle class="tw"  cx="140"  cy="90"  r="2.2" fill="#EAECF5"/>
+      <circle class="tw2" cx="320"  cy="200" r="1.6" fill="#7DD3E0"/>
+      <circle class="tw"  cx="520"  cy="70"  r="1.8" fill="#EAECF5"/>
+      <circle class="tw2" cx="700"  cy="160" r="2.4" fill="#F5BD48"/>
+      <circle class="tw"  cx="860"  cy="60"  r="1.5" fill="#EAECF5"/>
+      <circle class="tw2" cx="1120" cy="300" r="1.8" fill="#EAECF5"/>
+      <circle class="tw"  cx="240"  cy="330" r="1.4" fill="#7DD3E0"/>
+      <circle class="tw2" cx="80"   cy="220" r="1.7" fill="#EAECF5"/>
+      <circle class="tw"  cx="600"  cy="300" r="1.5" fill="#EAECF5"/>
+      <circle class="tw2" cx="950"  cy="380" r="1.6" fill="#F5BD48"/>
+      <circle class="tw"  cx="420"  cy="420" r="1.4" fill="#EAECF5"/>
+    </svg>
+
+    <div class="wrap">
+      <nav>
+        <a class="wordmark" href="#"><span class="d">D</span> Luna Soft</a>
+        <div class="links">
+          <a href="#apps">Apps</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </nav>
+
+      <div class="hero">
+        <span class="eyebrow">Estudio de software · Cali, Colombia</span>
+        <h1><span class="d">D</span> Luna Soft</h1>
+        <p class="lede">Tu socio en desarrollo de software.</p>
+        <p class="sub">Creamos apps propias sencillas y bien hechas, y desarrollamos
+           soluciones a la medida: móvil, web e integraciones que convierten ideas
+           en realidades digitales.</p>
+        <div class="cta-row">
+          <a class="btn btn-gold" href="https://wa.me/573187955067?text=Hola%20Daniel%2C%20vi%20dlunasoft.com%20y%20me%20gustar%C3%ADa%20hablar%20de%20un%20proyecto.">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.1-.7l.4-.5c.1-.2.1-.3.2-.5v-.5L9.6 8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg>
+            Escríbenos por WhatsApp
+          </a>
+          <a class="btn btn-ghost" href="#apps">Conoce nuestras apps</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="apps">
+      <span class="kicker">Producto propio</span>
+      <h2>Nuestras apps</h2>
+      <a class="app-card" href="https://memotask.dlunasoft.com">
+        <span class="name"><span class="fish">🐟</span>MemoTask</span>
+        <p>Recordatorios listos en 30 segundos, para los que tenemos memoria de pez.
+           Responde unas preguntas y la app arma tus recordatorios por ti.
+           Funciona sin internet y sin cuentas.</p>
+        <span class="badge">Próximamente en Google Play</span>
+      </a>
+    </section>
+
+    <section id="servicios">
+      <span class="kicker">Desarrollo a la medida</span>
+      <h2>Qué hacemos</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Apps Android nativas</h3>
+          <p>Aplicaciones móviles rápidas y livianas, como las del propio estudio:
+             pensadas para funcionar bien incluso sin internet.</p>
+          <span class="tech">KOTLIN · JETPACK COMPOSE</span>
+        </div>
+        <div class="card">
+          <h3>Desarrollo web</h3>
+          <p>Aplicaciones web seguras y escalables, del prototipo a producción,
+             con tecnologías probadas.</p>
+          <span class="tech">DJANGO · REACT</span>
+        </div>
+        <div class="card">
+          <h3>Integraciones y APIs</h3>
+          <p>Conectamos tus sistemas, servicios y dispositivos para que la
+             información fluya de manera eficiente.</p>
+          <span class="tech">REST · AUTOMATIZACIÓN</span>
+        </div>
+        <div class="card">
+          <h3>Consultoría y soporte</h3>
+          <p>Te ayudamos a optimizar y mejorar tu proyecto, y lo mantenemos
+             funcionando con rendimiento continuo.</p>
+          <span class="tech">MANTENIMIENTO · MEJORAS</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <span class="kicker">El estudio</span>
+      <h2>Sobre D Luna Soft</h2>
+      <div class="about">
+        <svg class="moon-mini" width="56" height="56" viewBox="0 0 64 64" aria-hidden="true">
+          <rect width="64" height="64" rx="14" fill="#0B1026" stroke="#232B58"/>
+          <path d="M42 12a22 22 0 1 0 10 40 26 26 0 1 1-10-40z" fill="#F5BD48"/>
+        </svg>
+        <div>
+          <p>Detrás de D Luna Soft está <strong>Daniel Luna</strong>, desarrollador de
+             software en Cali, Colombia, con años de experiencia creando soluciones
+             digitales con Django, React y Kotlin. El estudio construye sus propias
+             aplicaciones móviles y acompaña a clientes que necesitan software a la
+             medida, con una filosofía simple: <strong>software sencillo, honesto y
+             bien hecho</strong>.</p>
+          <p class="quote">“Cada proyecto es una oportunidad de transformar una idea
+             en una realidad digital.”</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <span class="kicker">Contacto</span>
+      <h2>Hablemos</h2>
+      <div class="contact-box">
+        <p>¿Tienes un proyecto en mente o quieres saber más sobre nuestras apps?
+           Escríbenos: respondemos con gusto.</p>
+        <div class="cta-row" style="justify-content: center;">
+          <a class="btn btn-gold" href="https://wa.me/573187955067?text=Hola%20Daniel%2C%20vi%20dlunasoft.com%20y%20me%20gustar%C3%ADa%20hablar%20de%20un%20proyecto.">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.6-6.1c-.3-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4 0-.5.1-.7l.4-.5c.1-.2.1-.3.2-.5v-.5L9.6 8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg>
+            WhatsApp: +57 318 795 5067
+          </a>
+          <a class="btn btn-ghost" href="mailto:support@dlunasoft.com">support@dlunasoft.com</a>
+        </div>
+        <p class="contact-note">Atendemos en horario de Colombia (GMT−5) · Español e inglés</p>
+      </div>
+    </section>
   </main>
+
   <footer>
-    <p>© 2026 D Luna Soft · <a href="mailto:support@dlunasoft.com">support@dlunasoft.com</a></p>
+    <div class="wrap">
+      <span>© 2026 D Luna Soft · Cali, Colombia</span>
+      <a href="mailto:support@dlunasoft.com">support@dlunasoft.com</a>
+      <a href="https://memotask.dlunasoft.com">MemoTask 🐟</a>
+    </div>
   </footer>
+
 </body>
 </html>
